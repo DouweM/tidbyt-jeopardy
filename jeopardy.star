@@ -17,7 +17,7 @@ def main(config):
 
   background_color = "#0000AF"
 
-  fps = const.FPS // 2
+  fps = const.FPS // 3
   delay = 1000 // fps
 
   return render.Root(
