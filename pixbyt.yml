@@ -1,0 +1,15 @@
+jobs:
+- name: jeopardy
+  tasks:
+  - tap-pixlet--jeopardy target-tidbyt
+- name: jeopardy--webp
+  tasks:
+  - tap-pixlet--jeopardy target-webp
+
+plugins:
+  extractors:
+  - name: tap-pixlet--jeopardy
+    inherit_from: tap-pixlet
+    pip_url: git+https://github.com/DouweM/tap-pixlet.git -r apps/jeopardy/requirements.txt
+    config:
+      path: apps/jeopardy
