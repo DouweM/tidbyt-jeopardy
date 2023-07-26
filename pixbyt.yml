@@ -10,6 +10,5 @@ plugins:
   extractors:
   - name: tap-pixlet--jeopardy
     inherit_from: tap-pixlet
-    pip_url: git+https://github.com/DouweM/tap-pixlet.git -r apps/jeopardy/requirements.txt
     config:
       path: apps/jeopardy

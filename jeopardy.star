@@ -2,14 +2,24 @@ load("render.star", "render")
 load("animation.star", "animation")
 load("pixlib/const.star", "const")
 load("pixlib/font.star", "font")
-load("pixlib/file.star", "file")
+load("pixlib/html.star", "html")
+
+URL = "https://j-archive.com/"
 
 def main(config):
-  result = file.exec("run.py")
+  response = http.get(URL)
 
-  category = result["category"]
-  clue = result["clue"]
-  answer = result["answer"]
+  if response.status_code != 200:
+    fail("Failed to load Owen Wilson FACTory feed")
+
+  data = response.body()
+  doc = html.xpath(data)
+
+  table = doc.query_node("(//table[@class='final_round'])[2]")
+
+  category = table.query("//td[@class='category_name']")
+  clue = table.query("//td[@class='clue_text']")
+  answer = table.query("//em[@class='correct_response']")
 
   title_font = "CG-pixel-3x5-mono"
   title_height = font.height(title_font)
