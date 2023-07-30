@@ -10,7 +10,7 @@ def main(config):
   response = http.get(URL)
 
   if response.status_code != 200:
-    fail("Failed to load Owen Wilson FACTory feed")
+    fail("Failed to load J! Archive")
 
   data = response.body()
   doc = html.xpath(data)
@@ -40,6 +40,7 @@ def main(config):
         children=[
           render.Box(
             height=title_height,
+            # TODO: Scroll
             child=render.Text(category, font=title_font)
           ),
           render.Padding(
@@ -74,6 +75,7 @@ def main(config):
                     offset_start=clue_height,
                     height=clue_height,
                     width=const.WIDTH,
+                    align="center",
                     child=render.WrappedText(
                       clue,
                       width=const.WIDTH,
